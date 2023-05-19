@@ -545,7 +545,7 @@ nav .navs a {
     .about .content {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 2rem;
+/*         padding-top: 2rem; */
     }
 
     .about .content .writeup h4 {
@@ -557,7 +557,7 @@ nav .navs a {
     }
 
     .projects {
-        padding-top: 1.75rem;
+/*         padding-top: 1.75rem; */
     }
 
     .projects .content {
