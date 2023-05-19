@@ -561,6 +561,7 @@ nav .navs a {
     }
 
     .projects .content {
+        margin-top: -5rem;
         width: 85%;
         text-align: center;
     }
