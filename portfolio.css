@@ -14,9 +14,20 @@ html {
     --text-p: #585858;
     --shadow: #c7c7c7;
     --accent: #007bff;
-    --background: #fff
+    --background: #fff;
+    --darkBg: #171717;
+    --darkColor: #e8e8e8;
+    --dark-p: #b2b2b2;
+    --transition: 400ms ease;
+    --darkshadow: #434343;
 }
-
+body{
+    transition: var(--transition);
+}
+body.dark{
+    background-color: var(--darkBg);
+    color: var(--darkColor);
+}
 .home,
 .about,
 .projects,
@@ -42,12 +53,126 @@ nav {
     background-color: var(--background);
     color: var(--text-color);
     padding: 0 2rem;
+    transition: var(--transition);
 }
-
+nav.dark{
+    background-color: var(--darkBg);
+}
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #73C0FC;
+    transition: .4s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2;
+    background-color: #e8e8e8;
+    transition: .4s;
+  }
+  
+  .sun svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .moon svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* .switch:hover */.sun svg {
+    animation: rotate 15s linear infinite;
+  }
+  
+  @keyframes rotate {
+   
+    0% {
+      transform: rotate(0);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* .switch:hover */.moon svg {
+    animation: tilt 5s linear infinite;
+  }
+  
+  @keyframes tilt {
+   
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(-10deg);
+    }
+  
+    75% {
+      transform: rotate(10deg);
+    }
+  
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .input:checked + .slider {
+    background-color: #183153;
+  }
+  
+  .input:focus + .slider {
+    box-shadow: 0 0 1px #183153;
+  }
+  
+  .input:checked + .slider:before {
+    transform: translateX(30px);
+  }
 nav p {
     font-weight: 500;
     font-size: 110%;
-
+    color: var(--text-color);
+    transition: var(--transition);
+}
+nav p.dark{
+    color: var(--darkColor);
 }
 
 nav .navs .navList {
@@ -60,8 +185,13 @@ nav .navs a {
     color: var(--text-color);
     font-family: "Poppins";
     font-size: 90%;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
 }
-
+nav .navs a.dark{
+    color: var(--darkColor);
+}
 .ham-menu,
 .close-menu {
     cursor: pointer;
@@ -89,7 +219,12 @@ nav .navs a {
     border: 2px solid var(--text-color);
     animation: pulse 1s ease infinite;
 }
-
+.ham-menu, .ham-menu::after{
+    transition: var(--transition);
+}
+.ham-menu.dark, .ham-menu.dark::after{
+    border-color: var(--background);
+}
 .ham {
     width: 30px;
     height: 3px;
@@ -116,7 +251,13 @@ nav .navs a {
 .ham::after {
     top: -.5rem;
 }
-
+.ham, .ham::before, .ham::after{
+    transition: var(--transition);
+}
+.ham.dark, .ham.dark::before, .ham.dark::after{
+    background-color: var(--dark-p);
+}
+   
 .close-menu {
     width: 45px;
     height: 45px;
@@ -159,7 +300,15 @@ nav .navs a {
     border-radius: 30px;
     transform: rotate(90deg);
 }
-
+.close-menu, .close-menu::before, .close, .close::before {
+    transition: var(--transition);
+}
+.close-menu.dark, .close-menu.dark::after{
+    border-color: var(--background);
+}
+.close.dark, .close.dark::before{
+    background-color: var(--dark-p);
+}
 @keyframes pulse {
     100% {
         transform: scale(1.4);
@@ -186,8 +335,11 @@ nav .navs a {
 .home .content .intro p {
     width: 85%;
     color: var(--text-p);
+    transition: var(--transition);
 }
-
+.home .content .intro p.dark {
+    color: var(--dark-p);
+}
 .home .content .intro p span .locateIcon {
     color: #007bff;
     font-size: 135%;
@@ -200,8 +352,11 @@ nav .navs a {
     background: url(./img/pic.png);
     background-size: cover;
     border: 2px solid var(--text-color);
+    transition: var(--transition);
 }
-
+.home .content .image.dark{
+    border: 2px solid var(--background);
+}
 .home .skills {
     width: 65%;
     display: flex;
@@ -209,20 +364,17 @@ nav .navs a {
 }
 
 .home .skills span {
-    position: relative;
     margin: 0 1.5rem 0 1rem;
-}
-
-.home .skills span::after {
-    content: "";
-    position: absolute;
-    top: -12.5px;
-    left: 0;
-    background-color: var(--text-color);
     width: 2px;
     height: 25px;
     border-radius: 50px;
+    transition: var(--transition);
+    background-color: var(--darkBg);
 }
+
+.home .skills span.dark{
+    background-color: var(--background);
+} 
 
 .home .skills .skillIcons {
     display: flex;
@@ -264,7 +416,7 @@ nav .navs a {
     height: 300px;
     border: 2px solid var(--text-color);
     border-radius: 2rem;
-    background: url(./img/pic.png);
+    background: url(./img/tech.jpg);
     background-size: cover;
 }
 
@@ -282,8 +434,11 @@ nav .navs a {
     font-size: 1.2rem;
     line-height: 120%;
     margin-bottom: .75rem;
+    transition: var(--transition);
 }
-
+.about .content .writeup h2.dark {
+    color: var(--darkColor);
+}
 .about .content .writeup h2 span .locateIcon {
     color: #007bff;
     font-size: 115%;
@@ -294,8 +449,11 @@ nav .navs a {
     font-size: 90%;
     text-align: justify;
     line-height: 175%;
+    transition: var(--transition);
 }
-
+.about .content .writeup p.dark {
+    color: var(--dark-p);
+}
 .projects .content {
     width: 66%;
     padding-top: 3rem;
@@ -328,7 +486,9 @@ nav .navs a {
     gap: 1.5rem;
     color: var(--text-p);
 }
-
+.projects .content .works .work:nth-child(odd) {
+    flex-direction: row-reverse;
+}
 .projects .content .works .work .info {
     flex-basis: 50%;
     text-align: justify;
@@ -339,6 +499,10 @@ nav .navs a {
     margin-bottom: .5rem;
     font-weight: 500;
     color: var(--text-color);
+    transition: var(--transition);
+}
+.projects .content .works .work .info h3.dark {
+    color: var(--darkColor);
 }
 
 .projects .content .works .work .info h3 span {
@@ -352,6 +516,10 @@ nav .navs a {
 .projects .content .works .work .info p {
     font-size: 90%;
     margin-bottom: .75rem;
+    transition: var(--transition);
+}
+.projects .content .works .work .info p.dark {
+    color: var(--dark-p);
 }
 
 .projects .content .works .work .info .skill,
@@ -422,7 +590,10 @@ nav .navs a {
     color: var(--text-color);
     font-size: 1.2rem;
     margin-bottom: .5rem;
-
+    transition: var(--transition);
+}
+.contact h2.dark {
+    color: var(--darkColor);
 }
 
 .contact .content {
@@ -445,10 +616,13 @@ nav .navs a {
     box-shadow: 4px 4px 10px var(--shadow);
     transition: 220ms ease;
 }
+.contact .content .card.dark {
+    box-shadow: 4px 4px 10px var(--darkshadow);
 
+}
 .contact .content .card:hover {
     box-shadow: none;
-    border: 1px solid var(--shadow);
+    border: 1px solid var(--darkshadow);
 }
 
 .contact .content .card {
@@ -462,11 +636,19 @@ nav .navs a {
 
 .contact .content .card h4 {
     color: var(--text-color);
+    transition: var(--transition);
+}
+.contact .content .card h4.dark{
+    color: var(--darkColor);
 }
 
 .contact .content .card p {
     color: var(--text-p);
     font-size: 90%;
+    transition: var(--transition);
+}
+.contact .content .card p.dark {
+    color: var(--dark-p);
 }
 .footer{
     height: 50px;
@@ -476,6 +658,11 @@ nav .navs a {
     justify-content: center;
     align-items: center;
     font-family: "Poppins";
+    transition: var(--transition);
+}
+.footer.dark{
+    background-color: var(--background);
+    color: var(--text-color);
 }
 
 @media screen and (max-width: 800px) {
@@ -496,6 +683,9 @@ nav .navs a {
         gap: 5rem;
         background-color: var(--background);
         transition: 400ms ease;
+    }
+    nav .navs .navList.dark{
+        background-color: var(--darkBg);
     }
 
     nav .navList.show {
@@ -577,6 +767,9 @@ nav .navs a {
         flex-direction: column;
     }
     .projects .content .works .work:nth-child(even){
+        flex-direction: column-reverse;
+    }
+    .projects .content .works .work:nth-child(odd){
         flex-direction: column-reverse;
     }
 .projects .content .works .work .img {
